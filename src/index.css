@@ -1,0 +1,401 @@
+@import "tailwindcss";
+
+/* ============================================================
+   APPLYZAA DESIGN SYSTEM
+   Brand: Deep black / charcoal + white + orange-red accent
+   Logo accent: #E84320 (from the upward arrow in the logo)
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* Brand colors derived from the ApplyZa logo */
+    --color-brand:       #E84320;   /* orange-red arrow accent */
+    --color-brand-light: #FF6B47;   /* lighter variant */
+    --color-brand-dim:   rgba(232, 67, 32, 0.12);
+
+    /* Surface layers */
+    --color-bg:          #0A0A0A;   /* near-black base */
+    --color-surface-1:   #111111;   /* slightly lifted */
+    --color-surface-2:   #181818;   /* card backgrounds */
+    --color-surface-3:   #222222;   /* borders, dividers */
+    --color-surface-4:   #2A2A2A;   /* hover states */
+
+    /* Text hierarchy */
+    --color-text-primary:   #F5F5F5;
+    --color-text-secondary: #A0A0A0;
+    --color-text-muted:     #606060;
+    --color-text-brand:     #E84320;
+
+    /* Border / separator */
+    --color-border:         rgba(255, 255, 255, 0.08);
+    --color-border-strong:  rgba(255, 255, 255, 0.16);
+
+    /* Easing — Animation Forge custom curves */
+    --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in:      cubic-bezier(0.7, 0, 0.84, 0);
+    --ease-in-out:  cubic-bezier(0.83, 0, 0.17, 1);
+    --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-gentle:  cubic-bezier(0.25, 1, 0.5, 1);
+
+    /* Duration hierarchy */
+    --dur-micro:     150ms;
+    --dur-component: 300ms;
+    --dur-section:   500ms;
+    --dur-page:      800ms;
+
+    /* Spacing scale — spacious (density 3/10) */
+    --space-xs:  0.5rem;    /* 8px */
+    --space-sm:  1rem;      /* 16px */
+    --space-md:  2rem;      /* 32px */
+    --space-lg:  4rem;      /* 64px */
+    --space-xl:  6rem;      /* 96px */
+    --space-2xl: 8rem;      /* 128px */
+
+    /* Type scale */
+    --text-xs:   0.75rem;
+    --text-sm:   0.875rem;
+    --text-base: 1rem;
+    --text-lg:   1.125rem;
+    --text-xl:   1.25rem;
+    --text-2xl:  1.5rem;
+    --text-3xl:  1.875rem;
+    --text-4xl:  2.25rem;
+    --text-5xl:  3rem;
+    --text-6xl:  3.75rem;
+    --text-7xl:  4.5rem;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: var(--text-base);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  section[id] {
+    scroll-margin-top: 80px;
+  }
+
+  /* Focus ring — visible, brand-colored */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* Reduced motion — no-motion-first pattern */
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity var(--dur-section) var(--ease-out),
+                  transform var(--dur-section) var(--ease-out);
+    }
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--dur-section) var(--ease-out),
+                  transform var(--dur-section) var(--ease-out);
+    }
+    .reveal-stagger.in-view > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0ms; }
+    .reveal-stagger.in-view > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 80ms; }
+    .reveal-stagger.in-view > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 160ms; }
+    .reveal-stagger.in-view > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 240ms; }
+    .reveal-stagger.in-view > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 320ms; }
+    .reveal-stagger.in-view > *:nth-child(6) { opacity: 1; transform: none; transition-delay: 400ms; }
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: var(--color-brand);
+    color: white;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
+  ::-webkit-scrollbar-thumb { background: var(--color-surface-4); border-radius: 2px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-brand); }
+}
+
+@layer components {
+  /* ── Typography ─────────────────────────── */
+  .display-serif {
+    font-family: 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .display-sans {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .label-sm {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Buttons ─────────────────────────────── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background-color: var(--color-brand);
+    color: white;
+    font-weight: 600;
+    font-size: var(--text-sm);
+    letter-spacing: 0.01em;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background-color var(--dur-micro) var(--ease-out),
+      transform var(--dur-micro) var(--ease-out),
+      box-shadow var(--dur-micro) var(--ease-out);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity var(--dur-micro) var(--ease-out);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-brand-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(232, 67, 32, 0.35);
+  }
+
+  .btn-primary:hover::before { opacity: 1; }
+
+  .btn-primary:active {
+    transform: scaleY(0.97) scaleX(1.01);
+    box-shadow: none;
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    font-weight: 500;
+    font-size: var(--text-sm);
+    letter-spacing: 0.01em;
+    border-radius: 4px;
+    border: 1px solid var(--color-border-strong);
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      border-color var(--dur-micro) var(--ease-out),
+      color var(--dur-micro) var(--ease-out),
+      background-color var(--dur-micro) var(--ease-out),
+      transform var(--dur-micro) var(--ease-out);
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+    background-color: var(--color-brand-dim);
+    transform: translateY(-1px);
+  }
+
+  /* ── Section containers ───────────────── */
+  .section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-container { padding: 0 3rem; }
+  }
+
+  @media (min-width: 1280px) {
+    .section-container { padding: 0 4rem; }
+  }
+
+  /* ── Divider ───────────────────────────── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border-strong), transparent);
+    margin: 0;
+  }
+
+  /* ── Brand accent line ─────────────────── */
+  .accent-line {
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    background-color: var(--color-brand);
+    border-radius: 1px;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── Card ─────────────────────────────── */
+  .az-card {
+    background-color: var(--color-surface-2);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    padding: 2rem;
+    transition:
+      border-color var(--dur-component) var(--ease-out),
+      transform var(--dur-component) var(--ease-out),
+      box-shadow var(--dur-component) var(--ease-out);
+  }
+
+  .az-card:hover {
+    border-color: var(--color-brand);
+    transform: translateY(-3px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(232, 67, 32, 0.15);
+  }
+
+  /* ── Nav link ─────────────────────────── */
+  .nav-link {
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    position: relative;
+    transition: color var(--dur-micro) var(--ease-out);
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-brand);
+    transition: width var(--dur-component) var(--ease-out);
+  }
+
+  .nav-link:hover {
+    color: var(--color-text-primary);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* ── Service icon wrapper ───────────── */
+  .service-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+    background-color: var(--color-brand-dim);
+    border: 1px solid rgba(232, 67, 32, 0.25);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand);
+    flex-shrink: 0;
+    transition: background-color var(--dur-component) var(--ease-out),
+                transform var(--dur-component) var(--ease-bounce);
+  }
+
+  .az-card:hover .service-icon {
+    background-color: rgba(232, 67, 32, 0.2);
+    transform: scale(1.08);
+  }
+
+  /* ── Process step number ────────────── */
+  .step-number {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--color-brand);
+    opacity: 0.8;
+  }
+
+  /* ── Tag / pill ──────────────────────── */
+  .az-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.85rem;
+    background-color: var(--color-surface-3);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    font-size: var(--text-xs);
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.02em;
+    transition: border-color var(--dur-micro) var(--ease-out),
+                color var(--dur-micro) var(--ease-out);
+  }
+
+  .az-tag:hover {
+    border-color: var(--color-brand);
+    color: var(--color-brand);
+  }
+
+  /* ── Hero noise overlay ─────────────── */
+  .hero-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 180px;
+    pointer-events: none;
+    z-index: 1;
+    mix-blend-mode: overlay;
+  }
+
+  /* ── Glow effect ─────────────────────── */
+  .brand-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(232, 67, 32, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+  }
+
+  /* ── Animated underline for brand promise ── */
+  .promise-word {
+    position: relative;
+    color: var(--color-brand);
+    font-style: italic;
+  }
+}
